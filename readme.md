@@ -3,7 +3,7 @@
 
 #### Part 1 Too loud
 
-As an audiophile, I use Audioquest's Dragonfly Cobalt. After I changed to openSUSE from Windows, its output is too loud even when set in the minimum volumn. 
+As an audiophile, I use Audioquest's Dragonfly Cobalt. After I changed to openSUSE from Windows, its output is too loud even when set in the minimum volume. 
 
 Quick fix: Use alsamixer to configure in driver level. But it would need manual set every time.
 
@@ -34,9 +34,9 @@ Use `man amixer` to look up its documentation.
 #### Part 2 Sampling rate
 
 
-Cobalt has a feature that its light will change according to the sampleing rate of the file you're playing. 44.1 kHz is green, 48kHz is blue, 88.2kHz is orange, 96kHz is white
+Cobalt has a feature that its light will change according to the sampling rate of the file you're playing. 44.1 kHz is green, 48kHz is blue, 88.2kHz is orange, 96kHz is white
 
-How to let Cobalt to process it without resampling to 48kHz(default) all the time?
+How to let Cobalt process it without resampling to 48kHz(default) all the time?
 
 ```
 sudo nano /home/{your_user_name}/.config/pipewire/pipewire.conf.d/custom-rates.conf
@@ -95,28 +95,7 @@ monitor.alsa.rules = [
 
 ### Overview of ALSA, WirePlumber and PipeWire
 
-
-  +-------------------------------------------+
-  |               Applications                   | (Audacious, Spotify, Firefox)
-  +-------------------------------------------+
-					        |
-  +-------------------------------------------+
-  |        WirePlumber (The "Brain") |  (Policies, Rules, Decisions)
-  +-------------------------------------------+
-                            |
-  +-------------------------------------------+
-  |         PipeWire (The "Engine")     |  (Mixing, Routing, Processing)
-  +-------------------------------------------+
-	                        |
-  +-------------------------------------------+
-  |         ALSA (The "Foundation")    |  (Drivers, Hardware Access)
-  +-------------------------------------------+
-	                        |
-  +-------------------------------------------+
-  |         DragonFly Cobalt (Hardware)|
-  +-------------------------------------------+
-
-
+```
 
   +-------------------------------------------+
   |               Applications                |  (Audacious, Spotify, Firefox)
@@ -137,3 +116,5 @@ monitor.alsa.rules = [
   +-------------------------------------------+
   |         DragonFly Cobalt (Hardware)       |
   +-------------------------------------------+
+  
+```
