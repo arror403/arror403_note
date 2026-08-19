@@ -137,7 +137,7 @@ monitor.alsa.rules = [
 
 ![815+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_815.png)
 
-### Put my score in.
+### Put my score in. Percentage of people whose score >= 815 is 9.97% (~10%, beat 90%)
 
 
 > **Is 90% good? It depends.**
