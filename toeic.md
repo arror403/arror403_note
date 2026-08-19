@@ -1,7 +1,15 @@
-[Average](https://github.com/arror403/arror403_note/blob/main/pics/aver.png)
+![Average](https://github.com/arror403/arror403_note/blob/main/pics/aver.png)
 
-[Disributaion](https://github.com/arror403/arror403_note/blob/main/pics/dist.png)
+Average = 566
 
-[900+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_900.png)
+![Disributaion](https://github.com/arror403/arror403_note/blob/main/pics/dist.png)
 
-[815+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_815.png)
+Percentage of people whose score >= 900
+
+![900+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_900.png)
+
+With the above two, we can calculate standard deviation in normal distribution.
+
+![815+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_815.png)
+
+Put my score in.
