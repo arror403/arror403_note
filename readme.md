@@ -10,7 +10,7 @@ Quick fix: Use alsamixer to configure in driver level. But it would need manual 
 How to automate it? Use `udev`
 
 ```
-sudo nano /etc/udev/rules.d/99-usb-dac.rules
+sudo touch /etc/udev/rules.d/99-usb-dac.rules
 ```
 
 Write this line:
@@ -39,7 +39,7 @@ Cobalt has a feature that its light will change according to the sampling rate o
 How to let Cobalt process it without resampling to 48kHz(default) all the time?
 
 ```
-sudo nano /home/{your_user_name}/.config/pipewire/pipewire.conf.d/custom-rates.conf
+sudo touch /home/{your_user_name}/.config/pipewire/pipewire.conf.d/custom-rates.conf
 ```
 
 Write this:
@@ -56,7 +56,7 @@ But this will arise another problem, all devices will follow this rule, how to s
 #### Part 3 Specify device
 
 ```
-sudo nano /home/{your_user_name}/.config/wireplumber/wireplumber.conf.d/99-dragonfly.conf
+sudo touch /home/{your_user_name}/.config/wireplumber/wireplumber.conf.d/99-dragonfly.conf
 ```
 
 
@@ -120,25 +120,25 @@ monitor.alsa.rules = [
 ```
 
 
-# TOEIC
+## TOEIC
 
 
 ![Average](https://github.com/arror403/arror403_note/blob/main/pics/aver.png)
 
-### Average = 566
+- **Average = 566**
 
 ![Disributaion](https://github.com/arror403/arror403_note/blob/main/pics/dist.png)
 
-### Percentage of people whose score >= 900 is 4.3%
+- **Percentage of people whose score >= 900 is 4.3%**
 
 ![900+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_900.png)
 
-### With the above two, we can calculate standard deviation in normal distribution.
+- **With the above two, we can calculate standard deviation in normal distribution.**
 
 ![815+](https://github.com/arror403/arror403_note/blob/main/pics/norm_dist_815.png)
 
-### Put my score in. Percentage of people whose score >= 815 is 9.97% (~10%, beat 90%)
+- **Put my score in. Percentage of people whose score >= 815 is 9.97% (~10%, beat 90%)**
 
 
-> **Is 90% good? It depends.**
+> **Is 90% good? It depends. CEFR C1 requires 945, top 2.5%**
 
