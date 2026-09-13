@@ -140,5 +140,73 @@ monitor.alsa.rules = [
 - **Put my score in. Percentage of people whose score >= 815 is 9.97% (~10%, beat 90%)**
 
 
-> **Is 90% good? It depends. CEFR C1 requires 945, top 2.5%**
+> **Is 90% good? It depends. CEFR C1 requires 945, top 2.5% (2 SD above average)**
+
+
+---
+
+### Predator Sense issue
+
+[**From my PR**](https://github.com/cleyton1986/predator-sense/pull/56) 
+
+For the issue I encountered:
+
+> When adjusting the keyboard light using Fn + F10, the brightness of the screen will change to 0%. Can be resolved by logging out and logging in. It happened only once after a fresh boot, and then everything worked fine except for Fn + <- (the hotkey to decrease screen brightness).
+
+After a serious amount of troubleshooting, here is what I found:
+
+**From `sudo evtest /dev/input/event0`:**
+
+```bash
+/dev/input/event0:      AT Translated Set 2 keyboard
+
+Event: time 1789205461.615337, -------------- SYN_REPORT ------------
+Event: time 1789205463.157653, type 4 (EV_MSC), code 4 (MSC_SCAN), value f0
+Event: time 1789205463.157653, type 1 (EV_KEY), code 229 (KEY_KBDILLUMDOWN), value 2
+Event: time 1789205463.157653, -------------- SYN_REPORT ------------
+Event: time 1789205464.607003, type 4 (EV_MSC), code 4 (MSC_SCAN), value ef
+Event: time 1789205464.607003, type 1 (EV_KEY), code 224 (KEY_BRIGHTNESSDOWN), value 2
+```
+
+
+**Fn + F10 was mapped to `code 224 (KEY_BRIGHTNESSDOWN)`**
+
+
+To fix it, create `/etc/udev/hwdb.d/70-keyboard-fix.hwdb` with:
+```
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredatorPH315-54:*
+ KEYBOARD_KEY_ef=kbdillumup
+ KEYBOARD_KEY_f0=kbdillumdown
+```
+
+Follow by
+```
+sudo systemd-hwdb update && sudo udevadm trigger
+```
+
+Use `evtest` to verify the change.
+
+```bash
+Event: time 1789207119.625433, -------------- SYN_REPORT ------------
+Event: time 1789207122.690741, type 4 (EV_MSC), code 4 (MSC_SCAN), value ef
+Event: time 1789207122.690741, type 1 (EV_KEY), code 230 (KEY_KBDILLUMUP), value 2
+Event: time 1789207122.690741, -------------- SYN_REPORT ------------
+Event: time 1789207123.690377, type 4 (EV_MSC), code 4 (MSC_SCAN), value f0
+Event: time 1789207123.690377, type 1 (EV_KEY), code 229 (KEY_KBDILLUMDOWN), value 2
+```
+
+Now it should work fine.
+
+
+
+[60-keyboard.hwdb in systemd](https://github.com/systemd/systemd/blob/main/hwdb.d/60-keyboard.hwdb) includes the following:
+
+```
+# Predator PH 315-52
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredator*PH*315-52:*
+ KEYBOARD_KEY_ef=kbdillumup                             # Fn+F10
+ KEYBOARD_KEY_f0=kbdillumdown                           # Fn+F9
+```
+
+
 
