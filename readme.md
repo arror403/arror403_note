@@ -3,7 +3,7 @@
 
 #### Part 1 Too loud
 
-As an audiophile, I use Audioquest's Dragonfly Cobalt. After I changed to openSUSE from Windows, its output is too loud even when set in the minimum volume. 
+As an audiophile, I use Audioquest's Dragonfly Cobalt(discontinued in 2026). After I changed to openSUSE from Windows(2026/6/3), its output is too loud even when set in the minimum volume. 
 
 Quick fix: Use alsamixer to configure in driver level. But it would need manual set every time.
 
@@ -33,6 +33,7 @@ Use `man amixer` to look up its documentation.
 
 #### Part 2 Sampling rate
 
+> Inspired when reading manuals.
 
 Cobalt has a feature that its light will change according to the sampling rate of the file you're playing. 44.1 kHz is green, 48kHz is blue, 88.2kHz is orange, 96kHz is white
 
@@ -50,7 +51,7 @@ context.properties = {
 }
 ```
 
-But this will arise another problem, all devices will follow this rule, how to set Cobalt the only that follow this rule?
+But this will raise another problem, all devices will follow this rule, how to set Cobalt the only that follow this rule?
 
 
 #### Part 3 Specify device
@@ -92,6 +93,10 @@ monitor.alsa.rules = [
     }
 ]
 ```
+
+To verify, by using `pw-top` you can see which sampling rate is being used. It would be helpful for non-dragonfly devices.
+For Dragonfly, find sample files with specific sampling rate, the color will change accordingly. Most time it'll be 44.1kHz or 48kHz. You might wondering if it make sound batter? It depends from person to person.
+
 
 ### Overview of ALSA, WirePlumber and PipeWire
 
@@ -218,23 +223,25 @@ What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb
 
 > Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
 
-That's weird that Acer didn't provide it at its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
+That's weird that Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
 
-I'm dual booting Windows for such scenario. But to my surprise, I didn't get the update by Windows Update. The reason? I'm using a specialized version of Windows that only get crucial updates and firmware is not provided. (BTW, I did so because Windows Update is notorious for breaking Windows and pushing unnecessary updates.)
+I'm dual booting Windows for such scenario. But to my surprise, I didn't get the update by Windows Update. The reason? I'm using a specialized version of Windows that only get crucial updates and update for firmware is not provided. (BTW, I did so because Windows Update is notorious for breaking Windows and pushing unnecessary updates.)
 
-Then, how should I update it? I tried using `fwupdmgr` on my openSUSE part. Not provided, either. Reasonable, since it's a certificate of MS secure boot. Linux is totally fine working without it.
+Then, how should I update it? I tried using `fwupdmgr` on my openSUSE part. Not provided, either. Understandable, since it's a certificate of MS secure boot. Linux is totally fine working without it.
 
 One thing comes up in my mind. Microsoft has a [website](https://catalog.update.microsoft.com/Home.aspx) that include dedicate files that are used for Windows Update.
 
 I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that usually would be provided by vendor. BUT, the same version number was used for different products.
 
 By some discussion with chatGPT it helped me to find the exact one I need:
+
+Run it in PowerShell(admin)
 ```shell
 Get-PnpDevice -PresentOnly | Where-Object { $_.Class -eq 'Firmware' } | Format-List Status,Class,FriendlyName,InstanceId
 ```
-The output would something like this:
+The output would be something like this:
 
 ```
 Status       : OK
@@ -257,7 +264,7 @@ By searching it:
 
 `InstanceId` should match `Supported Hardware IDs`
 
-Download it. It's a .cab file, can be extracted like .zip files.
+Download it. It's a .cab file, can be extracted like .zip files. There are 3 in version `5.43.1.17` (you might got more). You can choose either of them. They're logically identical. I used [UEFITool](https://github.com/LongSoft/UEFITool) and [uefi-firmware-parser](https://github.com/theopolis/uefi-firmware-parser) to find out the difference is `signing`. You might noticed older versions have more than one release, too.
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_120653.png)
 
@@ -287,5 +294,5 @@ mokutil --db | grep -Ei "Microsoft.*UEFI.*CA.*2023|Microsoft.*UEFI.*CA.*2011"
 mokutil --kek | grep -Ei "Microsoft.*KEK.*2K.*2023|Microsoft.*KEK.*2011"
 ```
 
-You'll expecting:
+You'll get:
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_122743.png)
