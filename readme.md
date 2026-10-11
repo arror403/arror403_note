@@ -208,5 +208,25 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredator*PH*315-52:*
  KEYBOARD_KEY_f0=kbdillumdown                           # Fn+F9
 ```
 
+### BIOS update
 
+What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb/articles/18840-update-your-secure-boot-certificates-in-june-2026-to-stay-protected):
+
+> Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
+
+That's weird that Acer didn't provide it at its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
+
+I'm dual booting Windows for such scenario. But to my surprise, I didn't get the update by Windows Update. The reason? I'm using a specialized version of Windows and firmware update probably not provided, only crucial updates will be provided.
+
+Then, how should I update it? I tried using `fwupdmgr`, not provided, either. Reasonable, since it's a certificate of MS secure boot. Linux is totally 
+fine without it.
+
+One thing comes up in my mind. Microsoft has a website that include dedicate files that are used for Windows Update. 
+```
+https://catalog.update.microsoft.com/Home.aspx
+```
+
+I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that usually would be provided by vendor. BUT, the same version number was used for different products.
 
