@@ -39,7 +39,7 @@ Class        : Firmware
 InstanceId   : UEFI\RES_{9AB49E83-DF0B-3A4D-93FA-7232A979A2DF}\0
 ```
 
-**`93F76199-AB1E-4993-88B7-A5DB5309D6AA`** is the critical part.
+**`InstanceId: 93F76199-AB1E-4993-88B7-A5DB5309D6AA`** is the critical part.
 
 By searching it:
 
@@ -69,7 +69,9 @@ After few minutes when it finished. Check BIOS version in device manager to veri
 [System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI KEK).bytes) -match 'Microsoft Corporation KEK 2K CA 2023'
 ```
 
-You should get `True` for these three.
+You should get `True` for these three. Like:
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/verify_pw.png)
 
 On Linux:
 ```
