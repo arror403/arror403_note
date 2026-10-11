@@ -6,7 +6,7 @@ What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb
 
 > Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
 
-That's weird that Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
+Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
 
