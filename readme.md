@@ -1,3 +1,87 @@
+
+
+### BIOS update
+
+What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb/articles/18840-update-your-secure-boot-certificates-in-june-2026-to-stay-protected):
+
+> Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
+
+That's weird that Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
+
+I'm dual booting Windows for such scenario. But to my surprise, I didn't get the update by Windows Update. The reason? I'm using a specialized version of Windows that only get crucial updates and update for firmware is not provided. (BTW, I did so because Windows Update is notorious for breaking Windows and pushing unnecessary updates.)
+
+Then, how should I update it? I tried using `fwupdmgr` on my openSUSE part. Not provided, either. Understandable, since it's a certificate of MS secure boot. Linux is totally fine working without it.
+
+One thing comes up in my mind. Microsoft has a [website](https://catalog.update.microsoft.com/Home.aspx) that include dedicate files that are used for Windows Update.
+
+I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that usually would be provided by vendor. BUT, the same version number was used for different products.
+
+By some discussion with chatGPT it helped me to find the exact one I need:
+
+Run it in PowerShell(admin)
+```shell
+Get-PnpDevice -PresentOnly | Where-Object { $_.Class -eq 'Firmware' } | Format-List Status,Class,FriendlyName,InstanceId
+```
+The output would be something like this:
+
+```
+Status       : OK
+Class        : Firmware
+FriendlyName : Acer Inc. System Firmware 1.15
+InstanceId   : UEFI\RES_{93F76199-AB1E-4993-88B7-A5DB5309D6AA}\0
+Status       : OK
+Class        : Firmware
+InstanceId   : UEFI\RES_{9AB49E83-DF0B-3A4D-93FA-7232A979A2DE}\0
+Status       : OK
+Class        : Firmware
+InstanceId   : UEFI\RES_{9AB49E83-DF0B-3A4D-93FA-7232A979A2DF}\0
+```
+
+**`93F76199-AB1E-4993-88B7-A5DB5309D6AA`** is the critical part.
+
+By searching it:
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_115924.png)
+
+`InstanceId` should match `Supported Hardware IDs`
+
+Download it. It's a .cab file, can be extracted like .zip files. There are 3 in version `5.43.1.17` (you might got more). You can choose either of them. They're logically identical. I used [UEFITool](https://github.com/LongSoft/UEFITool) and [uefi-firmware-parser](https://github.com/theopolis/uefi-firmware-parser) to find out the difference is `signing`. You might noticed older versions have more than one release, too.
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_120653.png)
+
+Open PowerShell in admin mode and do:
+
+```shell
+pnputil /add-driver X:\{path_to_the_folder}\BIOS_1.17.INF /install
+```
+Restart your laptop/PC. That's the part you'll got a warning to keep your PC plugin.
+
+*BTW, if you lost power during BIOS update, it'll cause permanent and irreversible damage to your PC. You can search it on YouTube, there are videos show you what will happen.*
+
+After few minutes when it finished. Check BIOS version in device manager to verify the version is 1.17. More important, check these in PowerShell(admin):
+```
+[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI db).bytes) -match 'Microsoft UEFI CA 2023'
+
+[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI db).bytes) -match 'Windows UEFI CA 2023'
+
+[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI KEK).bytes) -match 'Microsoft Corporation KEK 2K CA 2023'
+```
+
+You should get `True` for these three.
+
+On Linux:
+```
+mokutil --db | grep -Ei "Microsoft.*UEFI.*CA.*2023|Microsoft.*UEFI.*CA.*2011"
+mokutil --kek | grep -Ei "Microsoft.*KEK.*2K.*2023|Microsoft.*KEK.*2011"
+```
+
+You'll get:
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_122743.png)
+
+---
+
 ### USB DAC issue
 
 
@@ -94,7 +178,7 @@ monitor.alsa.rules = [
 ]
 ```
 
-To verify, by using `pw-top` you can see which sampling rate is being used. It would be helpful for non-dragonfly devices.
+To verify, by using `pw-top`. It would be helpful for non-dragonfly devices.
 For Dragonfly, find sample files with specific sampling rate, the color will change accordingly. Most time it'll be 44.1kHz or 48kHz. You might wondering if it make sound batter? It depends from person to person.
 
 
@@ -212,87 +296,3 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredator*PH*315-52:*
  KEYBOARD_KEY_ef=kbdillumup                             # Fn+F10
  KEYBOARD_KEY_f0=kbdillumdown                           # Fn+F9
 ```
-
-
----
-
-
-### BIOS update
-
-What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb/articles/18840-update-your-secure-boot-certificates-in-june-2026-to-stay-protected):
-
-> Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
-
-That's weird that Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
-
-![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
-
-I'm dual booting Windows for such scenario. But to my surprise, I didn't get the update by Windows Update. The reason? I'm using a specialized version of Windows that only get crucial updates and update for firmware is not provided. (BTW, I did so because Windows Update is notorious for breaking Windows and pushing unnecessary updates.)
-
-Then, how should I update it? I tried using `fwupdmgr` on my openSUSE part. Not provided, either. Understandable, since it's a certificate of MS secure boot. Linux is totally fine working without it.
-
-One thing comes up in my mind. Microsoft has a [website](https://catalog.update.microsoft.com/Home.aspx) that include dedicate files that are used for Windows Update.
-
-I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that usually would be provided by vendor. BUT, the same version number was used for different products.
-
-By some discussion with chatGPT it helped me to find the exact one I need:
-
-Run it in PowerShell(admin)
-```shell
-Get-PnpDevice -PresentOnly | Where-Object { $_.Class -eq 'Firmware' } | Format-List Status,Class,FriendlyName,InstanceId
-```
-The output would be something like this:
-
-```
-Status       : OK
-Class        : Firmware
-FriendlyName : Acer Inc. System Firmware 1.15
-InstanceId   : UEFI\RES_{93F76199-AB1E-4993-88B7-A5DB5309D6AA}\0
-Status       : OK
-Class        : Firmware
-InstanceId   : UEFI\RES_{9AB49E83-DF0B-3A4D-93FA-7232A979A2DE}\0
-Status       : OK
-Class        : Firmware
-InstanceId   : UEFI\RES_{9AB49E83-DF0B-3A4D-93FA-7232A979A2DF}\0
-```
-
-**`93F76199-AB1E-4993-88B7-A5DB5309D6AA`** is the critical part.
-
-By searching it:
-
-![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_115924.png)
-
-`InstanceId` should match `Supported Hardware IDs`
-
-Download it. It's a .cab file, can be extracted like .zip files. There are 3 in version `5.43.1.17` (you might got more). You can choose either of them. They're logically identical. I used [UEFITool](https://github.com/LongSoft/UEFITool) and [uefi-firmware-parser](https://github.com/theopolis/uefi-firmware-parser) to find out the difference is `signing`. You might noticed older versions have more than one release, too.
-
-![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_120653.png)
-
-Open PowerShell in admin mode and do:
-
-```shell
-pnputil /add-driver X:\{path_to_the_folder}\BIOS_1.17.INF /install
-```
-Restart your laptop/PC. That's the part you'll got a warning to keep your PC plugin.
-
-*BTW, if you lost power during BIOS update, it'll cause permanent and irreversible damage to your PC. You can search it on YouTube, there are videos show you what will happen.*
-
-After few minutes when it finished. Check BIOS version in device manager to verify the version is 1.17. More important, check these in PowerShell(admin):
-```
-[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI db).bytes) -match 'Microsoft UEFI CA 2023'
-
-[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI db).bytes) -match 'Windows UEFI CA 2023'
-
-[System.Text.Encoding]::ASCII.GetString((Get-SecureBootUEFI KEK).bytes) -match 'Microsoft Corporation KEK 2K CA 2023'
-```
-
-You should get `True` for these three.
-
-On Linux:
-```
-mokutil --db | grep -Ei "Microsoft.*UEFI.*CA.*2023|Microsoft.*UEFI.*CA.*2011"
-mokutil --kek | grep -Ei "Microsoft.*KEK.*2K.*2023|Microsoft.*KEK.*2011"
-```
-
-You'll get:
-![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_122743.png)
