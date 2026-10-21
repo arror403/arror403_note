@@ -1,4 +1,15 @@
+*Power by nature intelligence*
 
+
+[BIOS update](https://github.com/arror403/arror403_note#bios-update)
+
+[DNS](https://github.com/arror403/arror403_note#dns)
+
+[USB DAC issue](https://github.com/arror403/arror403_note#usb-dac-issue)
+
+[TOEIC analysis](https://github.com/arror403/arror403_note#usb-dac-issue)
+
+---
 
 ### BIOS update
 
@@ -81,6 +92,21 @@ mokutil --kek | grep -Ei "Microsoft.*KEK.*2K.*2023|Microsoft.*KEK.*2011"
 
 You'll get:
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_122743.png)
+
+---
+
+### DNS
+
+From my experience on LineageOS. How [AdAway](https://github.com/AdAway/AdAway) works?
+
+In the world of custom ROM, it's common that people root their devices. Although we can set preferred DNS server in Settings, but as its name "preferred" apps are not necessary to use it. That's why Adguard can't block ads system wide.
+
+With root access, AdAway can force all apps using it. This mechanism is similar to [pi-hole](https://github.com/pi-hole/pi-hole). Indeed, using a phone with AdAway as Wi-Fi extender is essentially the same.
+
+How it works? In AdAway you need to setup host resources. You can find them on [filterlists.com](https://filterlists.com/). It'll extend its contents in `/etc/hosts` (Linux, I'm not sure where Android store it.). On Windows it's in `Windows/System32/drivers/etc/hosts`. 
+
+
+
 
 ---
 
