@@ -99,14 +99,22 @@ You'll get:
 
 From my experience on LineageOS. How [AdAway](https://github.com/AdAway/AdAway) works?
 
-In the world of custom ROM, it's common that people root their devices. Although we can set preferred DNS server in Settings, but as its name "preferred" apps are not necessary to use it. That's why Adguard can't block ads system wide.
+In the world of custom ROM, it's common that people root their devices. Although we can set preferred DNS server in Settings, but as its name "preferred" apps are not necessary to use it. That's why AdGuard can't block ads system wide.
 
 With root access, AdAway can force all apps using it. This mechanism is similar to [pi-hole](https://github.com/pi-hole/pi-hole). Indeed, using a phone with AdAway as Wi-Fi extender is essentially the same.
 
-How it works? In AdAway you need to setup host resources. You can find them on [filterlists.com](https://filterlists.com/). It'll extend its contents in `/etc/hosts` (Linux, I'm not sure where Android store it.). On Windows it's in `Windows/System32/drivers/etc/hosts`. 
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20260507-121830_AdAway.jpg)
 
 
+How it works? In AdAway you need to setup host resources. You can find them on [filterlists.com](https://filterlists.com/). It'll extend its contents in `/etc/hosts` (Linux, I'm not sure where Android store it). On Windows it's in `Windows/System32/drivers/etc/hosts`. These filters are a collection of urls used by AD providers.
 
+e.g., add following
+```
+127.0.0.1 google.com
+```
+When access google.com, your browser will get nothing(same as when you don't have Internet connection). This part was done by DNS providers like AdGuard.
+
+https://dns.adguard-dns.com/dns-query (DNS-over-HTTPS)
 
 ---
 
