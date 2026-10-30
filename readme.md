@@ -217,6 +217,11 @@ monitor.alsa.rules = [
 To verify, by using `pw-top`. It would be helpful for non-dragonfly devices.
 For Dragonfly, find sample files with specific sampling rate, the color will change accordingly. Most time it'll be 44.1kHz or 48kHz. You might wondering if it make sound batter? It depends from person to person.
 
+Default: always resample to 48kHz
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261025_204734_2.png)
+
+Without resampling:
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261030_141411_2.png)
 
 ### Overview of ALSA, WirePlumber and PipeWire
 
