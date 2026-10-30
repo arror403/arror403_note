@@ -270,8 +270,9 @@ Without resampling:
 - **Put my score in. Percentage of people whose score >= 815 is 9.97% (~10%, beat 90%)**
 
 
-> **Is 90% good? It depends. CEFR C1 requires 945, top 2.5% (2 SD above average)**
+> **Is 90% good? It depends. [CEFR](https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions) C1 requires 945, top 2.5% (2 SD above average)**
 
+![Official table](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261030_143040.png)
 
 ---
 
