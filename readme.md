@@ -7,7 +7,7 @@
 
 [USB DAC issue](https://github.com/arror403/arror403_note#usb-dac-issue)
 
-[TOEIC analysis](https://github.com/arror403/arror403_note#usb-dac-issue)
+[TOEIC analysis](https://github.com/arror403/arror403_note#toeic)
 
 ---
 
