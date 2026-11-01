@@ -21,7 +21,7 @@ What's new in version 1.17? According to [Acer](https://community.acer.com/en/kb
 
 > Microsoft Secure Boot certificates that were originally issued in 2011 are approaching expiration starting in June 2026.
 
-Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a pdf file:
+Acer didn't provide it on its [website](https://www.acer.com/tw-zh/support/product-support/PH315-54/downloads). Only a PDF file:
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_113103.png)
 
@@ -31,9 +31,9 @@ Then, how should I update it? I tried using `fwupdmgr` on my openSUSE part. Not 
 
 One thing comes up in my mind. Microsoft has a [website](https://catalog.update.microsoft.com/Home.aspx) that include dedicate files that are used for Windows Update.
 
-I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that usually would be provided by vendor. BUT, the same version number was used for different products.
+I was thinking by simply searching `5.43.1.17` (version number, the old one is `5.43.1.15`) and I can find files that would usually be provided by vendor. BUT, the same version number was used for different products.
 
-By some discussion with chatGPT it helped me to find the exact one I need:
+By some discussion with chatGPT it helped me find the exact one I need:
 
 Run it in PowerShell(admin)
 ```shell
@@ -62,7 +62,7 @@ By searching it:
 
 `InstanceId` should match `Supported Hardware IDs`
 
-Download it. It's a .cab file, can be extracted like .zip files. There are 3 in version `5.43.1.17` (you might got more). You can choose either of them. They're logically identical. I used [UEFITool](https://github.com/LongSoft/UEFITool) and [uefi-firmware-parser](https://github.com/theopolis/uefi-firmware-parser) to find out the difference is `signing`. You might noticed older versions have more than one release, too.
+Download it. It's a .cab file, can be extracted like .zip files. There are 3 in version `5.43.1.17` (you might get more). You can choose either of them. They're logically identical. I used [UEFITool](https://github.com/LongSoft/UEFITool) and [uefi-firmware-parser](https://github.com/theopolis/uefi-firmware-parser) to find out the difference is `signing`. You might notice older versions have more than one release, too.
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261011_120653.png)
 
@@ -71,7 +71,7 @@ Open PowerShell in admin mode and do:
 ```shell
 pnputil /add-driver X:\{path_to_the_folder}\BIOS_1.17.INF /install
 ```
-Restart your laptop/PC. That's the part you'll got a warning to keep your PC plugin.
+Restart your laptop/PC. That's the part you'll get a warning to keep your PC plugin.
 
 *BTW, if you lost power during BIOS update, it'll cause permanent and irreversible damage to your PC. You can search it on YouTube, there are videos show you what will happen.*
 
@@ -103,14 +103,14 @@ You'll get:
 
 From my experience on LineageOS. How [AdAway](https://github.com/AdAway/AdAway) works?
 
-In the world of custom ROM, it's common that people root their devices. Although we can set preferred DNS server in Settings, but as its name "preferred" apps are not necessary to use it. That's why AdGuard can't block ads system wide.
+In the world of custom ROM, it's common that people root their devices. Although we can set preferred DNS server in Settings, but as its name "preferred" apps are not necessary to use it. That's why AdGuard can't block ads system-wide.
 
 With root access, AdAway can force all apps using it. This mechanism is similar to [pi-hole](https://github.com/pi-hole/pi-hole). Indeed, using a phone with AdAway as Wi-Fi extender is essentially the same.
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20260507-121830_AdAway.jpg)
 
 
-How it works? In AdAway you need to setup host resources. You can find them on [filterlists.com](https://filterlists.com/). It'll extend its contents in `/etc/hosts` (Linux, I'm not sure where Android store it). On Windows it's in `Windows/System32/drivers/etc/hosts`. These filters are a collection of urls used by AD providers.
+How it works? In AdAway you need to set up host resources. You can find them on [filterlists.com](https://filterlists.com/). It'll extend its contents in `/etc/hosts` (Linux, I'm not sure where Android store it). On Windows it's in `Windows/System32/drivers/etc/hosts`. These filters are a collection of URLs used by AD providers.
 
 e.g., add following
 ```
@@ -219,7 +219,7 @@ monitor.alsa.rules = [
 ```
 
 To verify, by using `pw-top`. It would be helpful for non-dragonfly devices.
-For Dragonfly, find sample files with specific sampling rate, the color will change accordingly. Most time it'll be 44.1kHz or 48kHz. You might wondering if it make sound batter? It depends from person to person.
+For Dragonfly, find sample files with specific sampling rate, the color will change accordingly. Most time it'll be 44.1kHz or 48kHz. You might wonder if it makes sound batter? It depends on from person to person.
 
 Default: always resample to 48kHz
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261025_204734_2.png)
@@ -261,7 +261,7 @@ Without resampling:
 
 - **Average = 566**
 
-![Disributaion](https://github.com/arror403/arror403_note/blob/main/pics/dist.png)
+![Distribution](https://github.com/arror403/arror403_note/blob/main/pics/dist.png)
 
 - **Percentage of people whose score >= 900 is 4.3%**
 
@@ -363,7 +363,7 @@ From Stefan's openSUSE Blog [Installation of NVIDIA drivers on openSUSE and SLE]
 
 Conclusion: **`Just wait!`** So do similar issues.
 
-Pro and con using a rolling release disto is early access on the latest software, but they are problematic(buggy) as well.  
+Pro and con using a rolling release distro is early access on the latest software, but they are problematic(buggy) as well.  
 
 
 
@@ -386,5 +386,5 @@ Pro and con using a rolling release disto is early access on the latest software
 
 2. Semiconductor:
     
-- [How are Microchips Made? 🖥️🛠️ CPU Manufacturing Process Steps](https://www.youtube.com/watch?v=dX9CGRZwD-w) (Single video, Youtube)
+- [How are Microchips Made? 🖥️🛠️ CPU Manufacturing Process Steps](https://www.youtube.com/watch?v=dX9CGRZwD-w) (Single video, YouTube)
     > Integrated Circuits, CPUs, GPUs, Systems on a Chip, Microcontroller Chips, and all the other different types of microchips are the brains of all the devices and technology that we use on a daily basis.  But have you ever wondered how these microchips are made?  Well, in this video, we're going to take a tour of a microchip fabrication plant or fab and walk you through the dozens of steps used to make a microchip.  Specifically, we focus on how CPUs are made.  CPU, GPU, and Smartphone Microchip manufacturing is a multi-trillion dollar industry, and each factory costs in the tens of billions of dollars.  This is an overview of all the processes used to make a microchip, as well as an overview of a microchip factory.  We're planning more videos on microchip manufacturing, such as a 3D animated factory tour.
