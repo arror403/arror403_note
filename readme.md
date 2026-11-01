@@ -9,6 +9,8 @@
 
 [TOEIC analysis](https://github.com/arror403/arror403_note#toeic)
 
+[Learning resources](https://github.com/arror403/arror403_note/edit/main/readme.md#learning-resources)
+
 ---
 
 ### BIOS update
@@ -338,3 +340,25 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredator*PH*315-52:*
  KEYBOARD_KEY_ef=kbdillumup                             # Fn+F10
  KEYBOARD_KEY_f0=kbdillumdown                           # Fn+F9
 ```
+
+---
+
+### Learning resources
+
+
+1. Mathematics:
+
+- Linear Algebra
+    
+   - [MIT 18.06 Linear Algebra, Spring 2005](https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8) (36 videos, YouTube playlist)
+    > Instructor: Prof. Gilbert Strang, Massachusetts Institute of Technology
+    > 
+    > This is a basic subject on matrix theory and linear algebra. Emphasis is given to topics that will be useful in other disciplines, including systems of equations, vector spaces, determinants, eigenvalues, similarity, and positive definite matrices.
+
+    - [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) (16 videos, YouTube playlist)
+    > A free course offering the core concept of linear algebra with a visuals-first approach.
+
+2. Semiconductor:
+    
+- [How are Microchips Made? 🖥️🛠️ CPU Manufacturing Process Steps](https://www.youtube.com/watch?v=dX9CGRZwD-w) (Single video, Youtube)
+    > Integrated Circuits, CPUs, GPUs, Systems on a Chip, Microcontroller Chips, and all the other different types of microchips are the brains of all the devices and technology that we use on a daily basis.  But have you ever wondered how these microchips are made?  Well, in this video, we're going to take a tour of a microchip fabrication plant or fab and walk you through the dozens of steps used to make a microchip.  Specifically, we focus on how CPUs are made.  CPU, GPU, and Smartphone Microchip manufacturing is a multi-trillion dollar industry, and each factory costs in the tens of billions of dollars.  This is an overview of all the processes used to make a microchip, as well as an overview of a microchip factory.  We're planning more videos on microchip manufacturing, such as a 3D animated factory tour.
