@@ -7,9 +7,11 @@
 
 [USB DAC issue](https://github.com/arror403/arror403_note#usb-dac-issue)
 
+[Nvidia driver](https://github.com/arror403/arror403_note#nvidia-driver)
+
 [TOEIC analysis](https://github.com/arror403/arror403_note#toeic)
 
-[Learning resources](https://github.com/arror403/arror403_note/edit/main/readme.md#learning-resources)
+[Learning resources](https://github.com/arror403/arror403_note#learning-resources)
 
 ---
 
@@ -340,6 +342,30 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnPredator*PH*315-52:*
  KEYBOARD_KEY_ef=kbdillumup                             # Fn+F10
  KEYBOARD_KEY_f0=kbdillumdown                           # Fn+F9
 ```
+
+---
+
+### Nvidia driver
+
+It's widely known that Nvidia's support for Linux is not good. 
+> Linus Torvalds: [Nvidia, f*ck you!](https://www.youtube.com/watch?v=MShbP3OpASA&t=2993s) 
+
+I'd experienced issue updating it. An upstream issue while `nvidia-open-driver-G07-signed-kmp-meta` from `repo-non-free` repo not matched `nvidia-open-driver-G07-signed-kmp-default` from `repo-oss` repo.
+
+
+Discussion can be found on [openSUSE forums](https://forums.opensuse.org/t/nvidia-update-which-one/195495). That's when I started read openSUSE forums.
+
+From Stefan's openSUSE Blog [Installation of NVIDIA drivers on openSUSE and SLE](https://sndirsch.github.io/nvidia/2025/07/16/nvidia-drivers.html)
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261101_122559.png)
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261101_115941.png)
+
+Conclusion: **`Just wait!`** So do similar issues.
+
+Pro and con using a rolling release disto is early access on the latest software, but they are problematic(buggy) as well.  
+
+
 
 ---
 
