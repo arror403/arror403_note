@@ -360,8 +360,12 @@ From Stefan's openSUSE Blog [Installation of NVIDIA drivers on openSUSE and SLE]
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261101_122559.png)
 
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261101_115941.png)
+- This issue happened on 2026/8/15
 
-Conclusion: **`Just wait!`** So do similar issues.
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261106_093943.png)
+- Similar issue on 2026/11/5
+
+What to do: **`Just wait!`** Since it's an upstream issue. So do similar issues(e.g., VideoLAN).
 
 Pro and con using a rolling release distro is early access on the latest software, but they are problematic(buggy) as well.  
 
