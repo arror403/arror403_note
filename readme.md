@@ -365,6 +365,15 @@ From Stefan's openSUSE Blog [Installation of NVIDIA drivers on openSUSE and SLE]
 ![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261106_093943.png)
 - Similar issue on 2026/11/5
 
+![](https://github.com/arror403/arror403_note/blob/main/pics/Screenshot_20261108_120836.png)
+- Resolved on 2026/11/8
+
+Following two should on the same version(i.e. 620.70.06).
+
+`nvidia-open-driver-G07-signed-kmp-default 620.70.06_k7.3.1_1-1.1`
+
+`nvidia-open-driver-G07-signed-kmp-meta    620.70.06-43.1`
+
 What to do: **`Just wait!`** Since it's an upstream issue. So do similar issues(e.g., VideoLAN).
 
 Pro and con using a rolling release distro is early access on the latest software, but they are problematic(buggy) as well.  
