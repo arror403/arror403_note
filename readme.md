@@ -132,6 +132,9 @@ As an audiophile, I use Audioquest's [Dragonfly Cobalt](https://www.audioquest.c
 ![](https://github.com/arror403/arror403_note/blob/main/pics/dragonfly-cobalt-dragonflycobg-376308.jpg)
 - DragonFly Cobalt, it's essentially a USB audio card.
 
+> Official description: DragonFly Cobalt is a USB DAC (digital-to-analog converter), preamplifier, and headphone amplifier. It bypasses the audio circuitry in laptops, computers, and smartphones to deliver cleaner, clearer, more naturally beautiful music to headphones, powered speakers, or complete audio systems.
+
+
 Quick fix: Use alsamixer to configure in driver level. But it would need manual set every time.
 
 How to automate it? Use `udev`
