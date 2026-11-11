@@ -127,7 +127,10 @@ https://dns.adguard-dns.com/dns-query (DNS-over-HTTPS)
 
 #### Part 1 Too loud
 
-As an audiophile, I use Audioquest's Dragonfly Cobalt(discontinued in 2026). After I changed to openSUSE from Windows(2026/6/3), its output is too loud even when set in the minimum volume. 
+As an audiophile, I use Audioquest's [Dragonfly Cobalt](https://www.audioquest.com/products/dragonfly-cobalt)(discontinued in 2026). After I changed to openSUSE from Windows(2026/6/3), its output is too loud even when set in the minimum volume. 
+
+![](https://github.com/arror403/arror403_note/blob/main/pics/dragonfly-cobalt-dragonflycobg-376308.jpg)
+- DragonFly Cobalt, it's essentially a USB audio card.
 
 Quick fix: Use alsamixer to configure in driver level. But it would need manual set every time.
 
